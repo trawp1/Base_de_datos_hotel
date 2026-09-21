@@ -3,7 +3,7 @@
 class Database
 {
     private $host = "localhost";
-    private $db_name = "hotel";
+    private $db_name = "base_de_datos_hotel";
     private $username = "root";
     private $password = "";
 
