@@ -1,42 +1,34 @@
 <?php
 
-class Ciudad
+require_once __DIR__ . "/../../config/database.php";
+
+class ciudad 
 {
-    private $conexion;
+    private $connection;
 
-    public function __construct($conexion)
+    public function __construct()
     {
-        $this->conexion = $conexion;
+        $database = new database();
+        $this->connection = $database->connect();
     }
 
-    public function guardar($nombreCiudad, $idDepartamento)
+    public function getAll()
     {
-        $sql = "INSERT INTO ciudad
-                (
-                    nombreCiudad,
-                    idDepartamento
-                )
-                VALUES
-                (
-                    :nombre,
-                    :departamento
-                )";
+        try{
+            $sql = "SELECT 
+                        nombre_ciudad,
+                        departamento,
+                        id_ciudad
+                    from ciudad";
 
-        $stmt = $this->conexion->prepare($sql);
+        } catch (PDOException $p) {
 
-        $stmt->bindParam(":nombre", $nombreCiudad);
-        $stmt->bindParam(":departamento", $idDepartamento);
+            echo "Ocurrió un error " . $p->getMessage();
 
-        return $stmt->execute();
-    }
+            return [];
 
-    public function obtenerDepartamentos()
-    {
-        $sql = "SELECT * FROM departamento";
-
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 }
+
+?>

@@ -1,89 +1,40 @@
 <?php
 
-class Cliente
+require_once __DIR__ . "/../../config/database.php";
+
+class cliente 
 {
-    private $conexion;
 
-    public function __construct($conexion)
-    {
-        $this->conexion = $conexion;
-    }
+private $connection;
 
-    public function guardar(
-        $nDocumentoCliente,
-        $idTipoDoc,
-        $nombreCliente,
-        $idCiudad,
-        $idDepartamento,
-        $telefonoCliente,
-        $direccionCliente,
-        $correoCliente
-    ) {
+public function __construct()
+{
+    $database = new database ();
+    $this->connection = $database->connect();
+}
 
-        $sql = "INSERT INTO clientes
-        (
-            nDocumentoCliente,
-            idTipoDoc,
-            nombreCliente,
-            idCiudad,
-            idDepartamento,
-            telefonoCliente,
-            direccionCliente,
-            correoCliente
-        )
-        VALUES
-        (
-            :documento,
-            :tipoDoc,
-            :nombre,
-            :ciudad,
-            :departamento,
-            :telefono,
-            :direccion,
-            :correo
-        )";
+public function getAll()
+{
+       try {
+             $sql = "SELECT 
+                        documento,
+                        nombres,
+                        apellidos,
+                        telefono,
+                        correo,
+                        fecha_de_llegada,
+                        id_ciudad
+                    from cliente";
 
-        $stmt = $this->conexion->prepare($sql);
 
-        $stmt->bindParam(":documento", $nDocumentoCliente);
-        $stmt->bindParam(":tipoDoc", $idTipoDoc);
-        $stmt->bindParam(":nombre", $nombreCliente);
-        $stmt->bindParam(":ciudad", $idCiudad);
-        $stmt->bindParam(":departamento", $idDepartamento);
-        $stmt->bindParam(":telefono", $telefonoCliente);
-        $stmt->bindParam(":direccion", $direccionCliente);
-        $stmt->bindParam(":correo", $correoCliente);
+        } catch (PDOException $n) {
 
-        return $stmt->execute();
-    }
+            echo "Ocurrió un error en la tabla clientes: " . $n->getMessage();
 
-    public function obtenerTiposDocumento()
-    {
-        $sql = "SELECT * FROM tipoDocumento";
+            return [];
 
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->execute();
+        }
+}
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
-    public function obtenerCiudades()
-    {
-        $sql = "SELECT * FROM ciudad";
-
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function obtenerDepartamentos()
-    {
-        $sql = "SELECT * FROM departamento";
-
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }

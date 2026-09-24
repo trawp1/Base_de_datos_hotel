@@ -1,39 +1,36 @@
 <?php
 
-class Habitacion
+require_once __DIR__ . "/../../config/database.php";
+
+class habitacion 
 {
-    private $conexion;
+   private  $connection;
 
-    public function __construct($conexion)
-    {
-        $this->conexion = $conexion;
-    }
+   public function __construct(){
+    $database = new database ();
+    $this->connection = $database->connect();
+   }
 
-    public function guardar(
-        $numeroHabitacion,
-        $disponibilidad,
-        $cantidadCamas
-    ) {
+   public function getAll(){
+    try{
+             $sql = "SELECT 
+                        numero_de_habitacion,
+                        disponibilidad,
+                        tipo_de_pago,
+                        monto_a_pagar,
+                        cantidad_de_personas,
+                        reservada,
+                        cantidad_de_toallas,
+                        documentos
+                    from cliente";
 
-        $sql = "INSERT INTO habitacion
-        (
-            numeroHabitacion,
-            disponibilidad,
-            cantidadCamas
-        )
-        VALUES
-        (
-            :numero,
-            :disponibilidad,
-            :camas
-        )";
 
-        $stmt = $this->conexion->prepare($sql);
+        }catch (PDOException $n) {
 
-        $stmt->bindParam(":numero", $numeroHabitacion);
-        $stmt->bindParam(":disponibilidad", $disponibilidad);
-        $stmt->bindParam(":camas", $cantidadCamas);
+            echo "Ocurrió un error en la tabla clientes: " . $n->getMessage();
 
-        return $stmt->execute();
-    }
+            return [];
+
+        }
+   }
 }

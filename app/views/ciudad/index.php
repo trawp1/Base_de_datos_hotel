@@ -34,4 +34,13 @@ try {
 ?>
 </table>
 
+    <form action="/ciudad" method="POST">
+    <input type="text" name="nombre">
+    <input type="text" name="categoria">
+    <input type="number" name="precio">
     
+    <botton type = "submit">guardar</botton>    
+
+
+
+    </form>
