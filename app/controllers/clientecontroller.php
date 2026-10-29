@@ -78,4 +78,10 @@ class clienteController
 
         echo "No se pudieron actualizar los clientes.";
     }
+
+
+    public function eliminar()
+    {
+        
+    }
 }

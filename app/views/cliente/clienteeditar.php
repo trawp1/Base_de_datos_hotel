@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar clientes</title>
 </head>
+
 <body>
 
     <h1>Editar todos los clientes</h1>
 
     <form action="/base_de_datos_hotel/public/cliente/editar"
-          method="POST">
+        method="POST">
 
         <table border="1">
             <tr>
@@ -86,4 +88,5 @@
     </a>
 
 </body>
+
 </html>
