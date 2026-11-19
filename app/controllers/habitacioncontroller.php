@@ -78,4 +78,24 @@ class habitacioncontroller
 
         echo "No se pudieron actualizar las habitaciones.";
     }
+
+
+    public function eliminar()
+    {
+        $numero_de_habitacion = filter_input(
+            INPUT_POST,
+            'numero_de_habitacion',
+            FILTER_VALIDATE_INT
+        );
+        if(!$numero_de_habitacion || $numero_de_habitacion <= 0){
+            exit("El id no es valido");
+        }
+        $habitacionModel = new habitacion();
+        
+        if($habitacionModel -> eliminar($numero_de_habitacion)){
+            header("location: /base_de_datos_hotel/public");
+            exit;
+        }
+        echo "no  se pudo eliminar";
+    }
 }

@@ -1,484 +1,525 @@
-<!--
 <a href="/base_de_datos_hotel/public/cliente">cliente</a>
 <a href="/Base_de_datos_hotel/public/ciudad">Ciudad</a>
 <a href="/base_de_datos_hotel/public/habitacion">habitacion</a>
--->
+
 
 
 <?php
 
-/*
-require_once __DIR__ . "/../app/controllers/ciudadcontroller.php";
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-$ciudadController = new ciudadcontroller();
-
-if (
-    $method === 'GET' &&
-    $uri === '/Base_de_datos_hotel/public/ciudad'
-) {
-    $ciudadController->index();
-} elseif (
-    $method === 'GET' &&
-    $uri === '/Base_de_datos_hotel/public/ciudad/crear'
-) {
-    $ciudadController->crear();
-} elseif (
-    $method === 'POST' &&
-    $uri === '/Base_de_datos_hotel/public/ciudad'
-) {
-    $ciudadController->guardar();
-} elseif (
-    $method === 'GET' &&
-    $uri === '/Base_de_datos_hotel/public/ciudad/editar'
-) {
-    $ciudadController->mostrarEditar();
-} elseif (
-    $method === 'POST' &&
-    $uri === '/Base_de_datos_hotel/public/ciudad/editar'
-) {
-    $ciudadController->editarTodas();
-} elseif (
-    $method === 'POST' &&
-    strtolower($uri) === '/base_de_datos_hotel/public/ciudad/eliminar'
-) {
-    $ciudadController = new ciudadcontroller();
-    $ciudadController->eliminar();
-} else {
-    echo "Ruta no encontrada: " . htmlspecialchars($uri);
-}
-*/
-
-?>
-
-
-<?php
-
-/*
-require_once __DIR__ . "/../app/controllers/habitacioncontroller.php";
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-if (
-    $method === 'GET' &&
-    $uri === '/base_de_datos_hotel/public/habitacion'
-) {
-    $habitacionController = new habitacioncontroller();
-    $habitacionController->index();
-} elseif (
-    $method === 'GET' &&
-    $uri === '/base_de_datos_hotel/public/habitacion/crear'
-) {
-    $habitacionController = new habitacioncontroller();
-    $habitacionController->crear();
-} elseif (
-    $method === 'POST' &&
-    $uri === '/base_de_datos_hotel/public/habitacion'
-) {
-    $habitacionController = new habitacioncontroller();
-    $habitacionController->guardar();
-} elseif (
-    $method === 'GET' &&
-    $uri === '/base_de_datos_hotel/public/habitacion/editar'
-) {
-    $habitacionController = new habitacioncontroller();
-    $habitacionController->mostrareditar();
-} elseif (
-    $method === 'POST' &&
-    $uri === '/base_de_datos_hotel/public/habitacion/editar'
-) {
-    $habitacionController = new habitacioncontroller();
-    $habitacionController->editartodas();
-} else {
-    http_response_code(404);
-    echo "Ruta no encontrada: " . htmlspecialchars($uri);
-}
-*/
-
-?>
-
-
-<?php
-
-/*
-require_once __DIR__ . "/../app/controllers/clienteController.php";
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-if (
-    $method === 'GET' &&
-    $uri === '/base_de_datos_hotel/public/cliente'
-) {
-    $clienteController = new clienteController();
-    $clienteController->index();
-} elseif (
-    $method === 'GET' &&
-    $uri === '/base_de_datos_hotel/public/cliente/crear'
-) {
-    $clienteController = new clienteController();
-    $clienteController->crear();
-} elseif (
-    $method === 'POST' &&
-    $uri === '/base_de_datos_hotel/public/cliente'
-) {
-    $clienteController = new clienteController();
-    $clienteController->guardar();
-} elseif (
-    $method === 'GET' &&
-    $uri === '/base_de_datos_hotel/public/cliente/editar'
-) {
-    $clienteController = new clienteController();
-    $clienteController->mostrareditar();
-} elseif (
-    $method === 'POST' &&
-    $uri === '/base_de_datos_hotel/public/cliente/editar'
-) {
-    $clienteController = new clienteController();
-    $clienteController->editartodas();
-} else {
-    http_response_code(404);
-    echo "Ruta no encontrada: " . htmlspecialchars($uri);
-}
-*/
+    require_once __DIR__ . "/../app/controllers/ciudadcontroller.php";
+
+    $method = $_SERVER['REQUEST_METHOD'];
+    $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
-?>
-<br><br>
-<?php
- $frutas = ["Manzana", "Pera", "Mango"]; echo $frutas[0]; 
- echo "<br>";
-  echo $frutas[2]; 
+    switch ($uri) {
+
+        case '/base_de_datos_hotel/public/ciudad':
+
+            if ($method === 'GET') {
+                $ciudadController = new ciudadcontroller();
+                $ciudadController->index();
+                exit;
+            }
+
+            if ($method === 'POST') {
+                $ciudadController = new ciudadcontroller();
+                $ciudadController->guardar();
+                exit;
+            }
+            break;
+
+        case '/base_de_datos_hotel/public/ciudad/crear':
 
-?>
+            if ($method === 'GET') {
+                $ciudadController = new ciudadcontroller();
+                $ciudadController->crear();
+                exit;
+            }
+            break;
 
-<br><br>
+        case '/base_de_datos_hotel/public/ciudad/editar':
 
-<?php
+            if ($method === 'GET') {
+                $ciudadController = new ciudadcontroller();
+                $ciudadController->mostrarEditar();
+                exit;
+            }
 
-$lenguajes = ["PHP", "JavaScript", "Python", "Java", "C++"];
+            if ($method === 'POST') {
+                $ciudadController = new ciudadcontroller();
+                $ciudadController->editarTodas();
+                exit;
+            }
+            break;
 
-echo "Segundo lenguaje: " . $lenguajes[1];
-echo "<br>";
+        case '/base_de_datos_hotel/public/ciudad/eliminar':
 
-echo "Quinto lenguaje: " . $lenguajes[4];
-echo "<br>";
+            if ($method === 'POST') {
+                $ciudadController = new ciudadcontroller();
+                $ciudadController->eliminar();
+                exit;
+            }
+            break;
 
-echo "Primer lenguaje: " . $lenguajes[0];
+        default:
+            http_response_code(404);
+            echo "Ruta no encontrada: " . htmlspecialchars($uri);
+            break;
+    }
+    ?>
+
+
+    <?php
+
+    require_once __DIR__ . "/../app/controllers/habitacioncontroller.php";
+
+    $method = $_SERVER['REQUEST_METHOD'];
+    $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+    switch ($uri) {
+
+        case '/base_de_datos_hotel/public/habitacion':
+
+            if ($method === 'GET') {
+                $habitacionController = new habitacioncontroller();
+                $habitacionController->index();
+                exit;
+            }
+
+            if ($method === 'POST') {
+                $habitacionController = new habitacioncontroller();
+                $habitacionController->guardar();
+                exit;
+            }
+            break;
+
+        case '/base_de_datos_hotel/public/habitacion/crear':
+
+            if ($method === 'GET') {
+                $habitacionController = new habitacioncontroller();
+                $habitacionController->crear();
+                exit;
+            }
+            break;
 
-?>
-<br><br>
-<?php
+        case '/base_de_datos_hotel/public/habitacion/editar':
 
-$categorias = ["Bebidas", "Alimentos", "Electrodomésticos", "Ropa"];
+            if ($method === 'GET') {
+                $habitacionController = new habitacioncontroller();
+                $habitacionController->mostrarEditar();
+                exit;
+            }
 
-echo "La tercera categoría es: " . $categorias[2];
+            if ($method === 'POST') {
+                $habitacionController = new habitacioncontroller();
+                $habitacionController->editarTodas();
+                exit;
+            }
+            break;
 
-?>
+        default:
+            http_response_code(404);
+            echo "Ruta no encontrada: " . htmlspecialchars($uri);
+            break;
+    }
+    ?>
 
 
-<br><br>
+    <?php
 
-<?php
+    require_once __DIR__ . "/../app/controllers/clienteController.php";
 
-$producto = [
-    "nombre" => "Mouse",
-    "precio" => 35000,
-    "stock" => 12
-];
+    $method = $_SERVER['REQUEST_METHOD'];
+    $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
-echo $producto["nombre"];
-echo "<br>";
+    switch ($uri) {
 
-echo $producto["precio"];
+        case '/base_de_datos_hotel/public/cliente':
 
-?>
+            if ($method === 'GET') {
+                $clienteController = new clienteController();
+                $clienteController->index();
+                exit;
+            }
 
-<br><br><br>
+            if ($method === 'POST') {
+                $clienteController = new clienteController();
+                $clienteController->guardar();
+                exit;
+            }
+            break;
 
-<?php
+        case '/base_de_datos_hotel/public/cliente/crear':
 
-$aprendiz = [
-    "nombre" => "Jhon Alejandro Tabares Morera",
-    "ficha" => 228118,
-    "programa" => "ADSO",
-    "edad" => 22
-];
+            if ($method === 'GET') {
+                $clienteController = new clienteController();
+                $clienteController->crear();
+                exit;
+            }
+            break;
 
-echo "Nombre del aprendiz: " . $aprendiz["nombre"];
-echo "<br>";
+        case '/base_de_datos_hotel/public/cliente/editar':
 
-echo "Programa de formación: " . $aprendiz["programa"];
+            if ($method === 'GET') {
+                $clienteController = new clienteController();
+                $clienteController->mostrarEditar();
+                exit;
+            }
 
-?>
+            if ($method === 'POST') {
+                $clienteController = new clienteController();
+                $clienteController->editarTodas();
+                exit;
+            }
+            break;
 
-<br><br>
+        default:
+            http_response_code(404);
+            echo "Ruta no encontrada: " . htmlspecialchars($uri);
+            break;
+    }
+    ?>
 
-<?php
 
-$proveedor = [
-    "nombre" => "Carlos Rodríguez",
-    "ciudad" => "Bogotá",
-    "telefono" => "3001234567",
-    "correo" => "carlos@gmail.com"
-];
 
-echo "Nombre del proveedor: " . $proveedor["nombre"];
-echo "<br>";
+    /*
+    
+    <br><br>
+    <?php
+    $frutas = ["Manzana", "Pera", "Mango"];
+    echo $frutas[0];
+    echo "<br>";
+    echo $frutas[2];
 
-echo "Ciudad: " . $proveedor["ciudad"];
+    ?>
 
-?>
+    <br><br>
 
+    <?php
 
-<br><br>
-<?php
-$producto = [
-    "nombre" => "Teclado",
-    "precio" => 60000
-];
+    $lenguajes = ["PHP", "JavaScript", "Python", "Java", "C++"];
 
-$producto["precio"] = 55000;
+    echo "Segundo lenguaje: " . $lenguajes[1];
+    echo "<br>";
 
-$producto["stock"] = 8;
+    echo "Quinto lenguaje: " . $lenguajes[4];
+    echo "<br>";
 
-echo $producto["nombre"];
-echo "<br>";
+    echo "Primer lenguaje: " . $lenguajes[0];
 
-echo $producto["precio"];
-echo "<br>";
+    ?>
+    <br><br>
+    <?php
 
-echo $producto["stock"];
+    $categorias = ["Bebidas", "Alimentos", "Electrodomésticos", "Ropa"];
 
-?>
+    echo "La tercera categoría es: " . $categorias[2];
 
+    ?>
 
 
-<br><br>
-<?php
+    <br><br>
 
-$producto = [
-    "nombre" => "Mouse",
-    "precio" => 35000,
-    "cantidad" => 12
-];
+    <?php
 
-$producto["precio"] = 30000;
-
-$producto["cantidad"] = 20;
-
-$producto["categoria"] = "Accesorios";
-
-echo "Nombre: " . $producto["nombre"];
-echo "<br>";
-
-echo "Precio: " . $producto["precio"];
-echo "<br>";
-
-echo "Cantidad disponible: " . $producto["cantidad"];
-echo "<br>";
-
-echo "Categoría: " . $producto["categoria"];
-
-?>
-
-<br><br>
-
-<?php
-
-$marcas = ["HP", "Lenovo", "Dell"];
-
-$marcas[] = "Asus";
-$marcas[] = "Acer";
-
-echo "Marcas de computadores:";
-echo "<br>";
-
-echo $marcas[0];
-echo "<br>";
-
-echo $marcas[1];
-echo "<br>";
-
-echo $marcas[2];
-echo "<br>";
-
-echo $marcas[3];
-echo "<br>";
-
-echo $marcas[4];
-
-?>
-
-<br><br>
-<?php
-
-$productos = [
-    [
+    $producto = [
         "nombre" => "Mouse",
         "precio" => 35000,
-        "cantidad" => 10
-    ],
-    [
-        "nombre" => "Teclado",
-        "precio" => 60000,
-        "cantidad" => 15
-    ],
-    [
-        "nombre" => "Monitor",
-        "precio" => 450000,
-        "cantidad" => 5
-    ]
-];
+        "stock" => 12
+    ];
 
-echo "Nombre del segundo producto: " . $productos[1]["nombre"];
-echo "<br>";
+    echo $producto["nombre"];
+    echo "<br>";
 
-echo "Precio del tercer producto: " . $productos[2]["precio"];
-echo "<br>";
+    echo $producto["precio"];
 
-echo "Cantidad disponible del primer producto: " . $productos[0]["cantidad"];
+    ?>
 
-?>
-<br><br>
+    <br><br><br>
 
-<?php
+    <?php
 
-$aprendices = [
-    [
-        "nombre" => "Carlos",
+    $aprendiz = [
+        "nombre" => "Jhon Alejandro Tabares Morera",
         "ficha" => 228118,
-        "programa" => "ADSO"
-    ],
-    [
-        "nombre" => "María",
-        "ficha" => 228119,
-        "programa" => "ADSO"
-    ],
-    [
-        "nombre" => "Andrés",
-        "ficha" => 228120,
-        "programa" => "ADSO"
-    ]
-];
+        "programa" => "ADSO",
+        "edad" => 22
+    ];
 
-echo "Nombre del tercer aprendiz: " . $aprendices[2]["nombre"];
-echo "<br>";
+    echo "Nombre del aprendiz: " . $aprendiz["nombre"];
+    echo "<br>";
 
-echo "Ficha del primer aprendiz: " . $aprendices[0]["ficha"];
+    echo "Programa de formación: " . $aprendiz["programa"];
 
-?>
-<br><br>
-<?php
+    ?>
 
-$producto = [
-    "nombre" => "Monitor",
-    "precio" => 750000,
-    "proveedor" => [
-        "nombre" => "Tecnología SAS",
-        "ciudad" => "Bogotá"
-    ]
-];
+    <br><br>
 
-echo $producto["nombre"];
-echo "<br>";
+    <?php
 
-echo $producto["proveedor"]["nombre"];
-echo "<br>";
+    $proveedor = [
+        "nombre" => "Carlos Rodríguez",
+        "ciudad" => "Bogotá",
+        "telefono" => "3001234567",
+        "correo" => "carlos@gmail.com"
+    ];
 
-echo $producto["proveedor"]["ciudad"];
+    echo "Nombre del proveedor: " . $proveedor["nombre"];
+    echo "<br>";
 
-?>
-<br><br>
-<?php
+    echo "Ciudad: " . $proveedor["ciudad"];
 
-$aprendiz = [
-    "nombre" => "Carlos",
-    "edad" => 22,
-    "contacto" => [
-        "correo" => "carlos@gmail.com",
-        "telefono" => "3001234567"
-    ]
-];
-
-echo "Nombre del aprendiz: " . $aprendiz["nombre"];
-echo "<br>";
-
-echo "Correo electrónico: " . $aprendiz["contacto"]["correo"];
-
-?> 
-<br><br>
-<?php
-
-$producto = [
-    "nombre" => "Computador",
-    "precio" => 2500000,
-    "fabricante" => [
-        "nombre" => "Samsung",
-        "pais" => "Corea del Sur"
-    ]
-];
-
-echo "Nombre del producto: " . $producto["nombre"];
-echo "<br>";
-
-echo "País de origen: " . $producto["fabricante"]["pais"];
-
-?>
-
-<br><br>
-Alternativa 1. Condiciones if / elseif 
-<?php 
-$accion = "listar"; 
-if ($accion === "crear") { 
-echo "Formulario de creación"; 
-} elseif ($accion === "listar") { 
-echo "Listado de productos"; 
-} elseif ($accion === "eliminar") { 
-echo "Eliminar producto"; 
-} else { 
-echo "Acción no encontrada"; 
-} 
-
-?>
-<br>
+    ?>
 
 
-echoAlternativa 2. Instrucción switch 
+    <br><br>
+    <?php
+    $producto = [
+        "nombre" => "Teclado",
+        "precio" => 60000
+    ];
 
-<br><br>
-<?php 
-$accion = "listar"; 
- 
-switch ($accion) { 
-    case "crear": 
-        echo "Formulario de creación"; 
-        break; 
- 
-    case "listar": 
-        echo "Listado de productos"; 
-        break; 
- 
-    case "eliminar": 
-        echo "Eliminar producto"; 
-        break; 
- 
-    default: 
-        echo "Acción no encontrada"; 
-} 
-?>
-<br><br>
-<?php 
+    $producto["precio"] = 55000;
 
-$metodo = $_SERVER['REQUEST_METHOD']; 
-$uri = parse_url( 
-$_SERVER['REQUEST_URI'], 
-PHP_URL_PATH 
-); 
-echo "Método HTTP: " . $metodo; 
-echo "<br>"; 
-echo "Ruta solicitada: " . $uri; 
+    $producto["stock"] = 8;
 
-?>
+    echo $producto["nombre"];
+    echo "<br>";
+
+    echo $producto["precio"];
+    echo "<br>";
+
+    echo $producto["stock"];
+
+    ?>
+
+
+
+    <br><br>
+    <?php
+
+    $producto = [
+        "nombre" => "Mouse",
+        "precio" => 35000,
+        "cantidad" => 12
+    ];
+
+    $producto["precio"] = 30000;
+
+    $producto["cantidad"] = 20;
+
+    $producto["categoria"] = "Accesorios";
+
+    echo "Nombre: " . $producto["nombre"];
+    echo "<br>";
+
+    echo "Precio: " . $producto["precio"];
+    echo "<br>";
+
+    echo "Cantidad disponible: " . $producto["cantidad"];
+    echo "<br>";
+
+    echo "Categoría: " . $producto["categoria"];
+
+    ?>
+
+    <br><br>
+
+    <?php
+
+    $marcas = ["HP", "Lenovo", "Dell"];
+
+    $marcas[] = "Asus";
+    $marcas[] = "Acer";
+
+    echo "Marcas de computadores:";
+    echo "<br>";
+
+    echo $marcas[0];
+    echo "<br>";
+
+    echo $marcas[1];
+    echo "<br>";
+
+    echo $marcas[2];
+    echo "<br>";
+
+    echo $marcas[3];
+    echo "<br>";
+
+    echo $marcas[4];
+
+    ?>
+
+    <br><br>
+    <?php
+
+    $productos = [
+        [
+            "nombre" => "Mouse",
+            "precio" => 35000,
+            "cantidad" => 10
+        ],
+        [
+            "nombre" => "Teclado",
+            "precio" => 60000,
+            "cantidad" => 15
+        ],
+        [
+            "nombre" => "Monitor",
+            "precio" => 450000,
+            "cantidad" => 5
+        ]
+    ];
+
+    echo "Nombre del segundo producto: " . $productos[1]["nombre"];
+    echo "<br>";
+
+    echo "Precio del tercer producto: " . $productos[2]["precio"];
+    echo "<br>";
+
+    echo "Cantidad disponible del primer producto: " . $productos[0]["cantidad"];
+
+    ?>
+    <br><br>
+
+    <?php
+
+    $aprendices = [
+        [
+            "nombre" => "Carlos",
+            "ficha" => 228118,
+            "programa" => "ADSO"
+        ],
+        [
+            "nombre" => "María",
+            "ficha" => 228119,
+            "programa" => "ADSO"
+        ],
+        [
+            "nombre" => "Andrés",
+            "ficha" => 228120,
+            "programa" => "ADSO"
+        ]
+    ];
+
+    echo "Nombre del tercer aprendiz: " . $aprendices[2]["nombre"];
+    echo "<br>";
+
+    echo "Ficha del primer aprendiz: " . $aprendices[0]["ficha"];
+
+    ?>
+    <br><br>
+    <?php
+
+    $producto = [
+        "nombre" => "Monitor",
+        "precio" => 750000,
+        "proveedor" => [
+            "nombre" => "Tecnología SAS",
+            "ciudad" => "Bogotá"
+        ]
+    ];
+
+    echo $producto["nombre"];
+    echo "<br>";
+
+    echo $producto["proveedor"]["nombre"];
+    echo "<br>";
+
+    echo $producto["proveedor"]["ciudad"];
+
+    ?>
+    <br><br>
+    <?php
+
+    $aprendiz = [
+        "nombre" => "Carlos",
+        "edad" => 22,
+        "contacto" => [
+            "correo" => "carlos@gmail.com",
+            "telefono" => "3001234567"
+        ]
+    ];
+
+    echo "Nombre del aprendiz: " . $aprendiz["nombre"];
+    echo "<br>";
+
+    echo "Correo electrónico: " . $aprendiz["contacto"]["correo"];
+
+    ?>
+    <br><br>
+    <?php
+
+    $producto = [
+        "nombre" => "Computador",
+        "precio" => 2500000,
+        "fabricante" => [
+            "nombre" => "Samsung",
+            "pais" => "Corea del Sur"
+        ]
+    ];
+
+    echo "Nombre del producto: " . $producto["nombre"];
+    echo "<br>";
+
+    echo "País de origen: " . $producto["fabricante"]["pais"];
+
+    ?>
+
+    <br><br>
+    Alternativa 1. Condiciones if / elseif
+    <?php
+    $accion = "listar";
+    if ($accion === "crear") {
+        echo "Formulario de creación";
+    } elseif ($accion === "listar") {
+        echo "Listado de productos";
+    } elseif ($accion === "eliminar") {
+        echo "Eliminar producto";
+    } else {
+        echo "Acción no encontrada";
+    }
+
+    ?>
+    <br>
+
+
+    echoAlternativa 2. Instrucción switch
+
+    <br><br>
+    <?php
+    $accion = "listar";
+
+    switch ($accion) {
+        case "crear":
+            echo "Formulario de creación";
+            break;
+
+        case "listar":
+            echo "Listado de productos";
+            break;
+
+        case "eliminar":
+            echo "Eliminar producto";
+            break;
+
+        default:
+            echo "Acción no encontrada";
+    }
+    ?>
+    <br><br>
+    <?php
+
+    $metodo = $_SERVER['REQUEST_METHOD'];
+    $uri = parse_url(
+        $_SERVER['REQUEST_URI'],
+        PHP_URL_PATH
+    );
+    echo "Método HTTP: " . $metodo;
+    echo "<br>";
+    echo "Ruta solicitada: " . $uri;
+
+    ?>
+*/
+    

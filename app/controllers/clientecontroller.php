@@ -79,9 +79,27 @@ class clienteController
         echo "No se pudieron actualizar los clientes.";
     }
 
-
+/*
     public function eliminar()
     {
-        
-    }
+        $id_cliente = filter_input(
+            INPUT_POST,
+            'id_ciudad',
+            FILTER_VALIDATE_INT
+        );
+
+        if (!$id_cliente || $id_cliente <= 0){
+            exit("EL ID de la ciudad no es valido");
+        }
+
+        $clienteModel = new ciudad();
+
+        if($clienteModel->eliminar(id_cliente)){
+            header("location:/base_de_datos_hotel/public/cliente");
+            exit;
+        }
+        echo "no se pudo eliminar";
+    }*/
 }
+
+

@@ -109,8 +109,7 @@ class ciudadcontroller
         echo "No se pudieron actualizar las ciudades.";
     }
 
-    function borrar() {}
-
+  
 
 
     

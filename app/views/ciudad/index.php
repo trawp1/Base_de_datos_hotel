@@ -18,7 +18,7 @@
         <th>nombre_ciudad</th>
         <th>departamento</th>
         <th>id_ciudad</th>
-        <th>Acciones</th>
+        <th>🗑️</th>
     </tr>
 
     <?php
