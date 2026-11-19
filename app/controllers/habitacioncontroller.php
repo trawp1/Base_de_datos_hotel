@@ -1,3 +1,4 @@
+
 <?php
 
 require_once __DIR__ . "/../models/habitacion.php";
@@ -7,7 +8,6 @@ class habitacioncontroller
     public function index()
     {
         $habitacionModel = new habitacion();
-
         $habitacion = $habitacionModel->getAll();
 
         require_once __DIR__ . "/../views/habitacion/index.php";
@@ -43,11 +43,9 @@ class habitacioncontroller
         );
 
         if ($resultado) {
-
             header("Location: /base_de_datos_hotel/public/habitacion");
             exit;
         } else {
-
             echo "No se pudo guardar la habitación.";
         }
     }
@@ -59,7 +57,6 @@ class habitacioncontroller
 
         require_once __DIR__ . "/../views/habitacion/habitacioneditar.php";
     }
-
 
     public function editartodas()
     {
@@ -79,7 +76,6 @@ class habitacioncontroller
         echo "No se pudieron actualizar las habitaciones.";
     }
 
-
     public function eliminar()
     {
         $numero_de_habitacion = filter_input(
@@ -87,15 +83,18 @@ class habitacioncontroller
             'numero_de_habitacion',
             FILTER_VALIDATE_INT
         );
-        if(!$numero_de_habitacion || $numero_de_habitacion <= 0){
-            exit("El id no es valido");
+
+        if (!$numero_de_habitacion || $numero_de_habitacion <= 0) {
+            exit("El número de habitación no es válido.");
         }
+
         $habitacionModel = new habitacion();
-        
-        if($habitacionModel -> eliminar($numero_de_habitacion)){
-            header("location: /base_de_datos_hotel/public");
+
+        if ($habitacionModel->eliminar($numero_de_habitacion)) {
+            header("Location: /base_de_datos_hotel/public/habitacion");
             exit;
         }
-        echo "no  se pudo eliminar";
+
+        echo "No se pudo eliminar la habitación. Puede estar relacionada con otros registros.";
     }
 }

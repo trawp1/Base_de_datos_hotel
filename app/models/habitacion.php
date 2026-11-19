@@ -158,4 +158,31 @@ class habitacion
             return false;
         }
     }
+
+
+    public function eliminar($numero_de_habitacion)
+    {
+        try {
+
+            $sql = "DELETE FROM habitacion
+                WHERE numero_de_habitacion = :numero_de_habitacion";
+
+            $stmt = $this->connection->prepare($sql);
+
+            $stmt->bindParam(
+                ':numero_de_habitacion',
+                $numero_de_habitacion,
+                PDO::PARAM_INT
+            );
+
+            $stmt->execute();
+
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+
+            echo "Error al eliminar la habitación: " . $e->getMessage();
+
+            return false;
+        }
+    }
 }

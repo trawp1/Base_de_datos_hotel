@@ -146,5 +146,29 @@ class cliente
 
         return false;
     }
+    }
+
+
+
+public function eliminar($documento)
+{
+    try {
+
+        $sql = "DELETE FROM cliente WHERE documento = :documento";
+
+        $stmt = $this->connection->prepare($sql);
+
+        $stmt->bindParam(':documento', $documento);
+
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+
+    } catch (PDOException $e) {
+
+        echo "Error al eliminar el cliente: " . $e->getMessage();
+
+        return false;
+    }
 }
 }

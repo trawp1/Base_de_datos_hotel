@@ -1,3 +1,4 @@
+
 <?php
 
 require_once __DIR__ . "/../models/cliente.php";
@@ -7,18 +8,15 @@ class clienteController
     public function index()
     {
         $clienteModel = new cliente();
-
         $cliente = $clienteModel->getAll();
 
         require_once __DIR__ . "/../views/cliente/index.php";
     }
 
-
     public function crear()
     {
         require_once __DIR__ . "/../views/cliente/clientecrear.php";
     }
-
 
     public function guardar()
     {
@@ -43,15 +41,12 @@ class clienteController
         );
 
         if ($resultado) {
-
             header("Location: /base_de_datos_hotel/public/cliente");
             exit;
         } else {
-
             echo "No se pudo guardar el cliente.";
         }
     }
-
 
     public function mostrareditar()
     {
@@ -79,27 +74,25 @@ class clienteController
         echo "No se pudieron actualizar los clientes.";
     }
 
-/*
     public function eliminar()
     {
-        $id_cliente = filter_input(
+        $documento = filter_input(
             INPUT_POST,
-            'id_ciudad',
+            'documento',
             FILTER_VALIDATE_INT
         );
 
-        if (!$id_cliente || $id_cliente <= 0){
-            exit("EL ID de la ciudad no es valido");
+        if (!$documento || $documento <= 0) {
+            exit("El documento del cliente no es válido.");
         }
 
-        $clienteModel = new ciudad();
+        $clienteModel = new cliente();
 
-        if($clienteModel->eliminar(id_cliente)){
-            header("location:/base_de_datos_hotel/public/cliente");
+        if ($clienteModel->eliminar($documento)) {
+            header("Location: /base_de_datos_hotel/public/cliente");
             exit;
         }
-        echo "no se pudo eliminar";
-    }*/
+
+        echo "No se pudo eliminar el cliente. Puede estar relacionado con otros registros.";
+    }
 }
-
-
